@@ -9,6 +9,8 @@ Then, inside master container :
 - `ssh-agent bash`
 - `ssh-add /var/ansible_keys/master_key`
 
+**(Password is `12345`)**
+
 
 Check that everything is setup correctly with :
 
