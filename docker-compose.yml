@@ -1,0 +1,52 @@
+version: "3.0"
+
+services:
+
+  master:
+    build:
+      context: .
+      dockerfile: master.Dockerfile
+    
+    environment:
+      ANSIBLE_CONFIG: /ansible_workspace
+    command: ["/usr/sbin/sshd","-D"]
+    working_dir: /ansible_workspace
+    volumes:
+      - "${ANSIBLE_LAB_WORKSPACE}:/ansible_workspace"
+      - ansible_keys:/var/ansible_keys
+    networks:
+      - main_network
+  
+  
+  host_one:
+    depends_on:
+      - master
+    build:
+      context: .
+      dockerfile: target.debian.Dockerfile
+    command: ["/var/run.sh"]
+    volumes:
+      - ansible_keys:/var/ansible_keys
+    networks:
+      - main_network
+
+  host_two:
+    depends_on:
+      - master
+    build:
+      context: .
+      dockerfile: target.debian.Dockerfile
+    command: ["/var/run.sh"]
+    volumes:
+      - ansible_keys:/var/ansible_keys
+    networks:
+      - main_network
+
+
+
+volumes:
+  ansible_keys:
+
+networks:
+  main_network:
+    name: main_network
