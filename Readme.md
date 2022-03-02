@@ -17,7 +17,7 @@ Check that everything is setup correctly with :
 
 ## Config ansible_workspace
 
-To target a local dir containing your ansible playbook workspace, simply use an .env containing : 
+To target a local dir containing your ansible playbook workspace, simply use an env file containing : 
 
 ```
 ANSIBLE_LAB_WORKSPACE=/absolute/path/to/your/workspace
