@@ -11,15 +11,13 @@ Then, inside master container :
 
 **(Password is `12345`)**
 
-
 Check that everything is setup correctly with :
 
-`ansible -m ping all`
-
+`ansible -u ansible -m ping all`
 
 ## Config ansible_workspace
 
-To target a local dir containing your ansible playbook workspace, simply use an env file containing : 
+To target a local dir containing your ansible playbook workspace, simply use an env file containing :
 
 ```
 ANSIBLE_LAB_WORKSPACE=/absolute/path/to/your/workspace
@@ -34,6 +32,5 @@ You can switch between your env file when starting the lab with the `--env-file`
 To make sure that your env file has been loaded correctly, check the compose file that is about to be used to start the lab :
 
 `docker-compose --env-file ./.env.dev config`
-
 
 ^ There you should see your workspace path appear in the outputted YML config.
