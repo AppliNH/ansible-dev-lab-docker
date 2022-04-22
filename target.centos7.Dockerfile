@@ -1,7 +1,13 @@
 FROM centos:centos7
 
+
 RUN yum update -y
-RUN yum install python3 python3-pip aptitude iputils-ping net-tools man vim openssh-server sudo -y
+RUN yum install python3 python3-pip aptitude iputils-ping net-tools man vim wget openssh-server sudo -y
+
+# systemd config
+WORKDIR /systemd-config
+RUN wget --no-check-certificate https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py -O ./systemctl.py
+RUN cp systemctl.py /usr/bin/systemctl
 
 COPY run.sh /var/
 
