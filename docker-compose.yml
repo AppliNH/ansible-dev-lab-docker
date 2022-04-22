@@ -42,6 +42,29 @@ services:
     networks:
       - main_network
 
+  centos_one:
+    depends_on:
+      - master
+    build:
+      context: .
+      dockerfile: target.centos7.Dockerfile
+    command: ["/var/run.sh"]
+    volumes:
+      - ansible_keys:/var/ansible_keys
+    networks:
+      - main_network
+
+  centos_two:
+    depends_on:
+      - master
+    build:
+      context: .
+      dockerfile: target.centos7.Dockerfile
+    command: ["/var/run.sh"]
+    volumes:
+      - ansible_keys:/var/ansible_keys
+    networks:
+      - main_network
 
 
 volumes:
