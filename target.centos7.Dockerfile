@@ -3,6 +3,7 @@ FROM centos:centos7
 
 RUN yum update -y
 RUN yum install python3 python3-pip aptitude iputils-ping net-tools man vim wget openssh-server sudo -y
+RUN yum install centos-release-scl-rh -y
 
 # systemd config
 WORKDIR /systemd-config
