@@ -43,23 +43,18 @@ services:
       - main_network
 
   centos_one:
-    privileged: true
     depends_on:
       - master
     build:
       context: .
       dockerfile: target.centos7.Dockerfile
     command: ["/var/run.sh"]
-    cap_add:
-      - SYS_ADMIN
     volumes:
       - ansible_keys:/var/ansible_keys
-      - /sys/fs/cgroup/:/sys/fs/cgroup:ro
     networks:
       - main_network
 
   centos_two:
-    privileged: true
     depends_on:
       - master
     build:
